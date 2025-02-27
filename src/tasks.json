@@ -1,9 +1,16 @@
 [
     {
-        "uid": 1,
-        "description": "Crear el proyecto de tics",
+        "uid": 316,
+        "description": "Terminar la funcion de lista de tareas",
         "status": "todo",
-        "createdAt": "<built-in method now of type object at 0x104371bd0>",
+        "createdAt": "2025-02-26 21:47:30",
+        "updatedAt": ""
+    },
+    {
+        "uid": 531,
+        "description": "Iniciar la funcion eliminar o delete ",
+        "status": "todo",
+        "createdAt": "2025-02-26 21:50:03",
         "updatedAt": ""
     }
 ]

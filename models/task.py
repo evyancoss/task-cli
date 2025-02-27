@@ -1,7 +1,5 @@
 from datetime import datetime
-import json
-import os
-
+import json, os, random
 
 def file_tasks():
     if not os.path.exists('src/tasks.json'):
@@ -19,12 +17,13 @@ def list(status = None):
 
 def add(description: str):
         tasks = file_tasks()
+        uid = random.randint(1, 1000)
 
         new_task= {
-            'uid': 1,
+            'uid': uid,
             'description':description,
             'status':'todo',
-            'createdAt': str(datetime.now),
+            'createdAt': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
             'updatedAt':''
         }
         

@@ -1,10 +1,10 @@
 from models import task
-import sys, argparse
+import argparse
 
 def add(description: str):
     print("Add task: {}".format(task))
-    task.add(description)
-    print("Task added successfully (ID: 1)")
+    uid = task.add(description)
+    print("Task added successfully (ID: {})".format(uid))
 
 def update(uid: int):
     print("Update task: {}".format(uid))
@@ -24,10 +24,33 @@ def list(status=None):
 
 
 if __name__ == "__main__":
-    print("Hello, world")
-    user_input = sys.argv[1]
-    if user_input == '-list':
+    
+    parser = argparse.ArgumentParser(description="Task Manager CLI")
+
+    # Subparsers for different commands
+    subparsers = parser.add_subparsers(dest="command")
+
+    # Add task command
+    add_parser = subparsers.add_parser("add", help="Add a task")
+    add_parser.add_argument("description", type=str, help="Task description")
+
+    # List tasks command
+    list_parser = subparsers.add_parser("list", help="List all tasks")
+    list_parser.add_argument("--status", type=str, help="Filter by status (optional)")
+
+    # Update task command
+    update_parser = subparsers.add_parser("update", help="Update a task")
+    update_parser.add_argument("uid", type=int, help="Task ID")
+
+    # Delete task command
+    delete_parser = subparsers.add_parser("delete", help="Delete a task")
+    delete_parser.add_argument("uid", type=int, help="Task ID")
+
+    # Parse command-line arguments
+    args = parser.parse_args()
+
+    if args.command == 'list':
         tasks = list()
         print(tasks)
-    elif user_input == '-add':
-        add(' '.join(sys.argv[2:]))
+    elif args.command == 'add':
+        add(args.description)
