@@ -12,7 +12,10 @@ def file_tasks():
 
 def list(status = None):
         tasks = file_tasks()
-        tasks = [task for task in tasks] 
+        if status:
+            tasks = [task for task in tasks if task['status'] == status]
+        else:
+            tasks = [task for task in tasks] 
         return tasks
 
 def add(description: str):
@@ -34,5 +37,19 @@ def add(description: str):
 
         return new_task['uid']
     
+def update(uid:int, description: str):
+    list_tasks = file_tasks()
+    updated = False
+    for task in list_tasks:
+        if task['uid'] == uid:
+            updated = True
+            task['description'] = description
+            task['updatedAt'] = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+            break
     
-list()
+    if updated:
+        with open('src/tasks.json', 'w') as file:
+            json.dump(list_tasks, file, indent=4)
+        return 'Task update success'
+    else:
+        return 'Task no found'
