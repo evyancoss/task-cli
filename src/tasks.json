@@ -5,12 +5,5 @@
         "status": "todo",
         "createdAt": "2025-02-26 21:47:30",
         "updatedAt": "2025-03-05 01:21:45"
-    },
-    {
-        "uid": 531,
-        "description": "Iniciar la funcion eliminar o delete ",
-        "status": "todo",
-        "createdAt": "2025-02-26 21:50:03",
-        "updatedAt": ""
     }
 ]

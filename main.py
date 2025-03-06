@@ -11,7 +11,9 @@ def update(uid: int, description: str):
     print("Update task: {}".format(uid))
 
 def delete(uid: int):
-    print("Task: {} was deleted".format(uid))
+    
+    print("Task: {}".format(uid))
+    return task.delete(uid)
 
 def mark_in_progress(uid: int):
     print('')
@@ -59,3 +61,5 @@ if __name__ == "__main__":
         add(args.description)
     elif args.command == 'update':
         update(args.uid,args.description)
+    elif args.command == 'delete':
+        delete(args.uid)

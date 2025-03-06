@@ -53,3 +53,19 @@ def update(uid:int, description: str):
         return 'Task update success'
     else:
         return 'Task no found'
+
+def delete(uid:int):
+    list_tasks = file_tasks()
+    deleted = False
+    for task in list_tasks:
+        if task['uid'] == uid:
+            deleted = True
+            list_tasks.remove(task)
+            break
+    
+    if deleted:
+        with open('src/tasks.json', 'w') as file:
+            json.dump(list_tasks, file, indent=4)
+        return 'Was deleted success'
+    else:
+        return 'Task no found'
